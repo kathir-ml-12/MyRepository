@@ -2,6 +2,8 @@ package org.mgmt.system.assets;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +24,7 @@ public class AssetController {
 	private AssetService assetService;
 	
 	@PostMapping(value = "/org/{orgId}/addAsset", produces = "application/xml")
-	public ResponseEntity<Assets> addAsset(@PathVariable int orgId, @RequestBody Assets asset)
+	public ResponseEntity<Assets> addAsset(@PathVariable int orgId, @Valid @RequestBody Assets asset)
 	{
 		Assets assets = assetService.addAsset(orgId, asset);
 		return new ResponseEntity<Assets>(assets, HttpStatus.CREATED);
@@ -43,7 +45,7 @@ public class AssetController {
 	}
 	
 	@PutMapping(value = "/org/{orgId}/updateAsset", produces = "application/xml")
-	public ResponseEntity<Assets> updateAssetIdDetails(@PathVariable int orgId, @RequestBody Assets asset)
+	public ResponseEntity<Assets> updateAssetIdDetails(@PathVariable int orgId, @Valid @RequestBody Assets asset)
 	{
 		Assets assets = assetService.updateAssetDetails(asset, orgId);
 		return new ResponseEntity<Assets>(assets, HttpStatus.CREATED);

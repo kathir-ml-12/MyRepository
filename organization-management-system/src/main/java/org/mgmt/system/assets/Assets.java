@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.mgmt.system.organization.Organization;
 
@@ -20,8 +21,13 @@ public class Assets {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int assetId;
+	
+	@NotEmpty
 	private String assetType;
+	
+	@NotEmpty
 	private String assetName;
+	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonIgnore
     @JoinColumn(name="org_id", referencedColumnName = "orgid", columnDefinition = "int")

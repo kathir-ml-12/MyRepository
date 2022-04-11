@@ -1,5 +1,7 @@
 package org.mgmt.system.user;
 
+import javax.validation.Valid;
+
 import org.mgmt.system.security.Authentication;
 import org.mgmt.system.security.AuthenticationRequest;
 import org.mgmt.system.security.AuthenticationResponse;
@@ -23,18 +25,19 @@ public class UserController {
 
 	
 	@PostMapping(value="/registerUser", produces = "application/xml")
-	public ResponseEntity<User> registerUser(@RequestBody UserRegistrationDto userRegistrationDto)
+	public ResponseEntity<User> registerUser(@Valid @RequestBody UserRegistrationDto userRegistrationDto)
 	{
 		return new ResponseEntity<User>(userService.save(userRegistrationDto), HttpStatus.CREATED);
 	}
 	
 	
 	@PostMapping("/authenticateUser")
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest request) throws Exception
+	public ResponseEntity<?> createAuthenticationToken(@Valid @RequestBody AuthenticationRequest request) throws Exception
 	{
 		String jwt = authentication.doAuthentication(request);
 		return ResponseEntity.ok(new AuthenticationResponse(jwt));
 		
 	}
+
 
 }

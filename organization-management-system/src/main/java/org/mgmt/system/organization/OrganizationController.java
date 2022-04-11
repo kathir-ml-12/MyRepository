@@ -2,6 +2,8 @@ package org.mgmt.system.organization;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class OrganizationController
 	
 	
 	@PostMapping(value = "/addOrgDetails",  produces = "application/xml")
-	public ResponseEntity<Organization> addOrg(@RequestBody Organization org)
+	public ResponseEntity<Organization> addOrg(@Valid @RequestBody Organization org)
 	{
 		Organization organizaion = organzationService.addOrg(org);
 		return new ResponseEntity<Organization>(organizaion, HttpStatus.CREATED);
@@ -45,7 +47,7 @@ public class OrganizationController
 	}
 	
 	@PutMapping(value = "/updateOrgDetails",  produces = "application/xml")
-	public ResponseEntity<Organization> updateOrganization(@RequestBody Organization org)
+	public ResponseEntity<Organization> updateOrganization(@Valid @RequestBody Organization org)
 	{
 		Organization organization = organzationService.updateOrgDetails(org);
 		return new ResponseEntity<Organization>(organization, HttpStatus.CREATED);

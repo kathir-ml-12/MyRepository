@@ -62,9 +62,15 @@ public class EmployeeService {
     
     public Employee updateEmployee(Employee employee, int orgId)
     {
-    	Organization org = OrgRepository.findById(orgId).get();
-        employee.setOrganization(org);
-        return employeeRepository.save(employee);
+    	Optional<Employee> emp = employeeRepository.findByemailId(employee.getEmailId());
+        if(emp.isPresent())
+        {
+	    	Organization org = OrgRepository.findById(orgId).get();
+	        employee.setOrganization(org);
+	        return employeeRepository.save(employee);
+        }
+        else
+        	throw new RecordNotFoundException("Employee with given ID "+employee.getEmailId()+ " does not exist");
     }
     
     public void deleteEmployee(int employeeId)

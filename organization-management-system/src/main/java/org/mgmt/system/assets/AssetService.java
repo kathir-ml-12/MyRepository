@@ -38,7 +38,7 @@ public class AssetService {
 		catch(NoSuchElementException e)
 		{
 			throw new RecordNotFoundException(
-					"Organization with given Id: " + orgId + " does not exist");
+					"Asset with given Id: " + orgId + " does not exist");
 		}
 	}
 	
@@ -63,9 +63,17 @@ public class AssetService {
 	
 	public Assets updateAssetDetails(Assets asset, int orgId)
 	{
-		Organization org = OrgRepository.findById(orgId).get();
-		asset.setOrganization(org);
-		return assetRepository.save(asset);
+		Optional<Assets> asst = assetRepository.findById(asset.getAssetId());
+		if(asst.isPresent())
+		{
+			Organization org = OrgRepository.findById(orgId).get();
+			asset.setOrganization(org);
+			return assetRepository.save(asset);
+		}
+		else
+			throw new RecordNotFoundException(
+					"Asset with given Id: " + asset.getAssetId() + " does not exist");
+			
 	}
 	
 	public void deleteAsset(int assetId)

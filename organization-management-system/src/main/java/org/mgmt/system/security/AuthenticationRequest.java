@@ -1,8 +1,13 @@
 package org.mgmt.system.security;
 
+import javax.validation.constraints.NotEmpty;
+
 public class AuthenticationRequest {
 	
+	@NotEmpty
 	private String username;
+	
+	@NotEmpty
 	private String password;
 	
 	public AuthenticationRequest() {

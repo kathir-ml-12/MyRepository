@@ -3,6 +3,8 @@ package org.mgmt.system.employee;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class EmployeeController {
 	
 	
 	@PostMapping(value = "/org/{orgId}/addEmployee", produces = "application/xml")
-	public ResponseEntity<Employee> addEmployee(@PathVariable int orgId, @RequestBody Employee employee)
+	public ResponseEntity<Employee> addEmployee(@PathVariable int orgId, @Valid @RequestBody Employee employee)
 	{
 		Employee empl = userservice.addEmployee(employee, orgId);
 		return new ResponseEntity<Employee>(empl, HttpStatus.CREATED);
@@ -46,7 +48,7 @@ public class EmployeeController {
 	}
 	
 	@PutMapping(value = "/org/{orgId}/updateEmployee", produces = "application/xml")
-	public ResponseEntity<Employee> updateEmployeeDetails(@PathVariable int orgId, @RequestBody Employee employee)
+	public ResponseEntity<Employee> updateEmployeeDetails(@PathVariable int orgId, @Valid @RequestBody Employee employee)
 	{
 		Employee empl = userservice.updateEmployee(employee, orgId);
 		return new ResponseEntity<Employee>(empl, HttpStatus.CREATED);

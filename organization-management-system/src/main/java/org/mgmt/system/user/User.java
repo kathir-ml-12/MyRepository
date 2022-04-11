@@ -1,12 +1,13 @@
 package org.mgmt.system.user;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name =  "users", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -16,23 +17,27 @@ public class User {
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "first_name")
+	@NotEmpty(message = "First name must not be empty")
 	private String firstName;
 	
-	@Column(name = "last_name")
+	@NotEmpty
 	private String lastName;
 	
+	@Email
 	private String email;
 	
+	@NotEmpty
 	private String password;
 
+	@NotEmpty
 	private String roles;
 	
 	public User() {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password, String roles) {
+	public User(String firstName, String lastName, String email, String password, String roles) 
+	{
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;

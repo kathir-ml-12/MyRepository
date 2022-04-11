@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.mgmt.system.assets.Assets;
 import org.mgmt.system.employee.Employee;
@@ -21,8 +22,13 @@ public class Organization
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orgid;
+	
+	@NotEmpty
     private String orgName;
+	
+	@NotEmpty
     private String location;
+	
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Employee> employees = new HashSet<Employee>();
 	

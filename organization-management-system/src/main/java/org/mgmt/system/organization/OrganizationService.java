@@ -58,9 +58,12 @@ public class OrganizationService {
 			Set<Assets> assetList = orgn.get().getAssets();
 			org.setAssets(assetList);
 			org.setEmployees(employeeList);
+			return organziationRepository.save(org);
 		}
+		else
+			throw new RecordNotFoundException("Organization with given ID "+org.getOrgid()+ " does not exist");
 		
-		return organziationRepository.save(org);
+		
 	}
 	
 	public void deleteOrg(int orgId)

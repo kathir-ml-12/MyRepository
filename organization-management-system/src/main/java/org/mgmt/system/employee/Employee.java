@@ -1,6 +1,8 @@
 package org.mgmt.system.employee;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import org.mgmt.system.organization.Organization;
 
@@ -13,9 +15,16 @@ public class Employee
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@Email
 	private String emailId;
+	
+	@NotEmpty(message = "First name must not be empty")
 	private String firstName;
+	
+	@NotEmpty
 	private String lastName;
+	
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JsonIgnore
     @JoinColumn(name="org_id", referencedColumnName = "orgid", columnDefinition = "int")

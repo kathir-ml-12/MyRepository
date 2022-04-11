@@ -1,11 +1,23 @@
 package org.mgmt.system.user;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class UserRegistrationDto {
 	
+	@NotEmpty
 	private String firstName;
+	
+	@NotEmpty
 	private String lastName;
+	
+	@Email
 	private String email;
+	
+	@NotEmpty
 	private String password;
+
+	@NotEmpty
 	private String roles;
 	
 	public UserRegistrationDto(){

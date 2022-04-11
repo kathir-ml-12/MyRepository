@@ -37,7 +37,5 @@ public class UserService {
 					"User with given emailId: " +registrationDto.getEmail() + " is already present");
 		}
 	}
-	
-
 
 }
