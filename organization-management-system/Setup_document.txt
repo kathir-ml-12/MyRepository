@@ -1,0 +1,17 @@
+Application setup:
+
+Prerequisites:
+
+1. Java 1.8
+2. MAVEN 3.0+
+3. Spring 2.6.6
+4. Spring Tool Suite or any Supported IDE for Spring Boot.
+
+Application Build:
+
+1. run 'mvn clean install' inside organization-management-system folder.
+2. JAR organization-management-system-0.0.1-SNAPSHOT.jar file will be created inside target folder.
+
+Deployment setup:
+
+1. run java -jar organization-management-system-0.0.1-SNAPSHOT.jar
