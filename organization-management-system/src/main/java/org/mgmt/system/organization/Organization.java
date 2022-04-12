@@ -27,6 +27,7 @@ public class Organization
     private String orgName;
 	
 	@NotEmpty
+	@ColumnTransformer(read = "UPPER(location)")
     private String location;
 	
 	@OneToMany(mappedBy = "organization", cascade = CascadeType.ALL, orphanRemoval = true)
