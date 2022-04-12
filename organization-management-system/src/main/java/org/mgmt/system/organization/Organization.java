@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.annotations.ColumnTransformer;
 import org.mgmt.system.assets.Assets;
 import org.mgmt.system.employee.Employee;
 
