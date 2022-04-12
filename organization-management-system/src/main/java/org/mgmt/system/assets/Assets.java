@@ -28,7 +28,7 @@ public class Assets {
 	@NotEmpty
 	private String assetName;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JsonIgnore
     @JoinColumn(name="org_id", referencedColumnName = "orgid", columnDefinition = "int")
     private Organization organization;

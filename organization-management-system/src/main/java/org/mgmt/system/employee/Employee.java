@@ -25,7 +25,7 @@ public class Employee
 	@NotEmpty
 	private String lastName;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JsonIgnore
     @JoinColumn(name="org_id", referencedColumnName = "orgid", columnDefinition = "int")
     private Organization organization;
